@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="Username take, try again."
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="59.0dp"
+        android:id="@+id/creation_error"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffff0000" />
+    <EditText
+        android:layout_width="300.0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText1"
+        android:layout_gravity="center_horizontal"
+        android:hint="First name" />
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="33.0dp"
+        android:id="@+id/textView3" />
+    <EditText
+        android:layout_width="301.5dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:layout_gravity="center_horizontal"
+        android:hint="Last name" />
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="33.0dp"
+        android:id="@+id/textView4" />
+    <EditText
+        android:layout_width="300.0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText3"
+        android:layout_gravity="center_horizontal"
+        android:hint="Username" />
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="33.0dp"
+        android:id="@+id/textView5" />
+    <EditText
+        android:inputType="textPassword"
+        android:layout_width="300.0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText4"
+        android:layout_gravity="center_horizontal"
+        android:hint="Password" />
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6" />
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView7" />
+    <Button
+        android:text="Create account"
+        android:layout_width="335.5dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirm_account"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="0.0dp" />
+</LinearLayout>

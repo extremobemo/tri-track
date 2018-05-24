@@ -1918,11 +1918,17 @@ namespace TriTrack
 			// aapt resource value: 0x7f0b002b
 			public const int collapseActionView = 2131427371;
 			
+			// aapt resource value: 0x7f0b008a
+			public const int confirm_account = 2131427466;
+			
 			// aapt resource value: 0x7f0b0041
 			public const int contentPanel = 2131427393;
 			
 			// aapt resource value: 0x7f0b006e
 			public const int create_account_button = 2131427438;
+			
+			// aapt resource value: 0x7f0b0083
+			public const int creation_error = 2131427459;
 			
 			// aapt resource value: 0x7f0b0048
 			public const int custom = 2131427400;
@@ -1938,6 +1944,18 @@ namespace TriTrack
 			
 			// aapt resource value: 0x7f0b0012
 			public const int disableHome = 2131427346;
+			
+			// aapt resource value: 0x7f0b0084
+			public const int editText1 = 2131427460;
+			
+			// aapt resource value: 0x7f0b0085
+			public const int editText2 = 2131427461;
+			
+			// aapt resource value: 0x7f0b0086
+			public const int editText3 = 2131427462;
+			
+			// aapt resource value: 0x7f0b0087
+			public const int editText4 = 2131427463;
 			
 			// aapt resource value: 0x7f0b0059
 			public const int edit_query = 2131427417;
@@ -2158,6 +2176,12 @@ namespace TriTrack
 			// aapt resource value: 0x7f0b006c
 			public const int textView5 = 2131427436;
 			
+			// aapt resource value: 0x7f0b0088
+			public const int textView6 = 2131427464;
+			
+			// aapt resource value: 0x7f0b0089
+			public const int textView7 = 2131427465;
+			
 			// aapt resource value: 0x7f0b007a
 			public const int time = 2131427450;
 			
@@ -2375,6 +2399,9 @@ namespace TriTrack
 			
 			// aapt resource value: 0x7f04002e
 			public const int tooltip = 2130968622;
+			
+			// aapt resource value: 0x7f04002f
+			public const int UserCreation = 2130968623;
 			
 			static Layout()
 			{
