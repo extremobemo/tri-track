@@ -24,12 +24,35 @@ namespace TriTrack
            
             SetContentView(Resource.Layout.UserCreation);
             Button create_account = FindViewById<Button>(Resource.Id.confirm_account);
-           // Coming back to this later... TextView first = FindViewById<Button>(Resource.Id.first);
+            EditText first = FindViewById<EditText>(Resource.Id.first_name_field);
+            EditText last = FindViewById<EditText>(Resource.Id.last_name_field);
+            EditText username = FindViewById<EditText>(Resource.Id.username_create);
+            EditText password = FindViewById<EditText>(Resource.Id.password_create);
+
+
             create_account.Click += delegate
             {
-                MySqlConnection connection = new MySqlConnection("server=extremobemotestserver.mysql.database.azure.com;port=3306;database=test;user id=extremobemo@extremobemotestserver;password=Morris98;SslMode=None");
-                connection.Open();
-                create_account.Text = "HELLOO";
+                if (string.IsNullOrWhiteSpace(first.Text) || string.IsNullOrWhiteSpace(last.Text)
+                   || string.IsNullOrWhiteSpace(username.Text)|| string.IsNullOrWhiteSpace(password.Text)){
+                    create_account.Text = "CHEKC AGIN BOYO";
+                }
+
+                else{
+                    MySqlConnection connection = new MySqlConnection("server=extremobemotestserver.mysql.database.azure.com;port=3306;database=test;user id=extremobemo@extremobemotestserver;password=Morris98;SslMode=None; Allow User Variables=True");
+                    create_account.Text = (string.IsNullOrWhiteSpace(first.Text)).ToString();
+                    connection.Open();
+                    MySqlCommand insert_new_user = connection.CreateCommand();
+                    insert_new_user.CommandText = ("INSERT into users(first_name, last_name, username, password)values(@first_text, @last_text, @username_text, @password_text);");
+                    insert_new_user.Parameters.AddWithValue("@first_text", first.Text);
+                    insert_new_user.Parameters.AddWithValue("@last_text", last.Text);
+                    insert_new_user.Parameters.AddWithValue("@username_text", username.Text);
+                    insert_new_user.Parameters.AddWithValue("@password_text", password.Text);
+                    insert_new_user.ExecuteNonQuery();
+                    connection.Close();
+                    create_account.Text = "Account Created.";
+                    //create_account.Text = "HELLOO";
+                }
+
             };
         }
     }

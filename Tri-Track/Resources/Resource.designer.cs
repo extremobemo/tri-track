@@ -1945,18 +1945,6 @@ namespace TriTrack
 			// aapt resource value: 0x7f0b0012
 			public const int disableHome = 2131427346;
 			
-			// aapt resource value: 0x7f0b0084
-			public const int editText1 = 2131427460;
-			
-			// aapt resource value: 0x7f0b0085
-			public const int editText2 = 2131427461;
-			
-			// aapt resource value: 0x7f0b0086
-			public const int editText3 = 2131427462;
-			
-			// aapt resource value: 0x7f0b0087
-			public const int editText4 = 2131427463;
-			
 			// aapt resource value: 0x7f0b0059
 			public const int edit_query = 2131427417;
 			
@@ -1971,6 +1959,9 @@ namespace TriTrack
 			
 			// aapt resource value: 0x7f0b004d
 			public const int expanded_menu = 2131427405;
+			
+			// aapt resource value: 0x7f0b0084
+			public const int first_name_field = 2131427460;
 			
 			// aapt resource value: 0x7f0b0033
 			public const int forever = 2131427379;
@@ -1998,6 +1989,9 @@ namespace TriTrack
 			
 			// aapt resource value: 0x7f0b0034
 			public const int italic = 2131427380;
+			
+			// aapt resource value: 0x7f0b0085
+			public const int last_name_field = 2131427461;
 			
 			// aapt resource value: 0x7f0b0009
 			public const int line1 = 2131427337;
@@ -2043,6 +2037,9 @@ namespace TriTrack
 			
 			// aapt resource value: 0x7f0b0040
 			public const int parentPanel = 2131427392;
+			
+			// aapt resource value: 0x7f0b0087
+			public const int password_create = 2131427463;
 			
 			// aapt resource value: 0x7f0b006b
 			public const int password_field = 2131427435;
@@ -2208,6 +2205,9 @@ namespace TriTrack
 			
 			// aapt resource value: 0x7f0b0018
 			public const int useLogo = 2131427352;
+			
+			// aapt resource value: 0x7f0b0086
+			public const int username_create = 2131427462;
 			
 			// aapt resource value: 0x7f0b0069
 			public const int username_field = 2131427433;
