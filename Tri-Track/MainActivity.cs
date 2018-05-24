@@ -22,7 +22,7 @@ namespace TriTrack
 
             // Get our button from the layout resource,
             // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.button1);
+            Button button = FindViewById<Button>(Resource.Id.sign_in_button);
 
             //button.Click += delegate { button.Text = $"{count++} clicks!"; };
         }
