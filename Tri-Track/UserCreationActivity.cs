@@ -11,7 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using MySql.Data.MySqlClient;
-using Android.Content;
+//using Android.Content;
 
 namespace TriTrack
 {
@@ -34,10 +34,11 @@ namespace TriTrack
             {
                 if (string.IsNullOrWhiteSpace(first.Text) || string.IsNullOrWhiteSpace(last.Text)
                    || string.IsNullOrWhiteSpace(username.Text)|| string.IsNullOrWhiteSpace(password.Text)){
-                    create_account.Text = "CHEKC AGIN BOYO";
+                    DisplayError();
                 }
 
                 else{
+                    create_account.Enabled = false;
                     MySqlConnection connection = new MySqlConnection("server=extremobemotestserver.mysql.database.azure.com;port=3306;database=test;user id=extremobemo@extremobemotestserver;password=Morris98;SslMode=None; Allow User Variables=True");
                     create_account.Text = (string.IsNullOrWhiteSpace(first.Text)).ToString();
                     connection.Open();
@@ -49,11 +50,33 @@ namespace TriTrack
                     insert_new_user.Parameters.AddWithValue("@password_text", password.Text);
                     insert_new_user.ExecuteNonQuery();
                     connection.Close();
-                    create_account.Text = "Account Created.";
-                    //create_account.Text = "HELLOO";
+                    Android.App.AlertDialog.Builder diaglog = new AlertDialog.Builder(this);
+                    AlertDialog alert = diaglog.Create();
+                    alert.SetTitle("Success");
+                    alert.SetMessage("Your account has been created!");
+                    alert.SetButton("Okay", (c, ev) =>
+                    {
+                        Intent intent = new Intent(this, typeof(MainActivity));
+                        this.StartActivity(intent); 
+                        alert.Dismiss();
+
+                    });
+                    alert.Show();
                 }
 
             };
+        }
+
+        private void DisplayError(){
+            Android.App.AlertDialog.Builder diaglog = new AlertDialog.Builder(this);
+            AlertDialog alert = diaglog.Create();
+            alert.SetTitle("Error");
+            alert.SetMessage("Please be sure to fill out all required information.");
+            alert.SetButton("Okay", (c, ev) =>{
+                alert.Dismiss();
+            });
+            alert.Show();
+
         }
     }
 }
