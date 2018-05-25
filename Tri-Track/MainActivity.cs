@@ -21,7 +21,8 @@ namespace TriTrack
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
-
+            ImageView logo = FindViewById<ImageView>(Resource.Id.tri_track_logo);
+            logo.SetImageResource(Resource.Drawable.tri_track);
             // Get our button from the layout resource,
             // and attach an event to it
             Button sign_in_button = FindViewById<Button>(Resource.Id.sign_in_button);

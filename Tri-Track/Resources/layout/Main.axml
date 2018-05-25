@@ -8,21 +8,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView1" />
-    <TextView
-        android:text="Sign In"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Sign_In"
-        android:layout_gravity="center_horizontal"
-        android:textStyle="normal"
-        android:typeface="normal" />
-    <TextView
-        android:textAppearance="?android:attr/textAppearanceSmall"
+    <ImageView
+        android:src="@android:drawable/ic_menu_gallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:layout_marginBottom="63.0dp" />
+        android:id="@+id/tri_track_logo" />
     <EditText
         android:layout_width="240.0dp"
         android:layout_height="wrap_content"
@@ -62,7 +52,7 @@
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="10.5dp"
         android:id="@+id/textView6" />
     <Button
         android:layout_width="107.0dp"
