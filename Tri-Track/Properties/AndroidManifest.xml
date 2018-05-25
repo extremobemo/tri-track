@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.extremobemo.Tri_Track">
     <uses-sdk android:minSdkVersion="10" />
-    <application 
-        android:allowBackup="true" android:icon="@mipmap/icon" android:label="@string/app_name" android:theme="@android:style/Theme.Material.Light">
+    <application android:allowBackup="true" android:icon="@mipmap/icon" android:label="@string/app_name" android:theme="@android:style/Theme.Material.Light">
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAmxJAUMX3QoQ_-RXGacr8iqFyHRQeXlCo" />
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
     </application>
 </manifest>
