@@ -74,6 +74,8 @@ namespace TriTrack
                 password_reader.Read();
                 user_password = password_reader.GetString(0);
                 if(user_password == password){
+                    Intent intent = new Intent(this, typeof(MapsActivity));
+                    this.StartActivity(intent);
                     return true;
                 }
                 else{

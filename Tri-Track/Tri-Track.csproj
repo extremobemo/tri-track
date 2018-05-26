@@ -109,6 +109,7 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserCreationActivity.cs" />
+    <Compile Include="MapsActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -126,6 +127,7 @@
     <AndroidResource Include="Resources\layout\UserCreation.axml" />
     <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\drawable\tri_track.png" />
+    <AndroidResource Include="Resources\layout\Map.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
