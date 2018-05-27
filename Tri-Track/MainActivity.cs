@@ -33,8 +33,6 @@ namespace TriTrack
             sign_in_button.Click += delegate { 
                 
                 sign_in_button.Text = CheckUsernameLogin().ToString(); };
-                TriTrack.Utils.Settings.LastUsername = username;
-                TriTrack.Utils.Settings.LastPassword = password;
 
             create_account_button.Click += delegate
             {
