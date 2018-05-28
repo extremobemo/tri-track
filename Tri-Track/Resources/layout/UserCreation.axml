@@ -55,11 +55,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView6" />
-    <TextView
-        android:textAppearance="?android:attr/textAppearanceLarge"
+    <ProgressBar
+        style="?android:attr/progressBarStyleSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView7" />
+        android:id="@+id/creation_progress_bar"
+        android:layout_marginBottom="8.5dp"
+        android:visibility="invisible" />
     <Button
         android:text="Create account"
         android:layout_width="335.5dp"
