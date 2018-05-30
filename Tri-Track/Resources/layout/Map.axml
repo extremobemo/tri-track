@@ -8,11 +8,18 @@
     <fragment
         android:id="@+id/the_fucking_map"
         android:layout_width="match_parent"
-        android:layout_height="425.0dp"
+        android:layout_height="373.5dp"
         class="com.google.android.gms.maps.MapFragment" />
     <Button
         android:text="SWITCH"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/switch_button" />
+    <TextView
+        android:text="LAT/LONG"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/LATLONG"
+        android:scrollbars="vertical"
+        android:maxLines="50" />
 </LinearLayout>
