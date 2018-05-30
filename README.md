@@ -5,8 +5,8 @@
 
 
 
-Tri-Track is an application built using `C#`, `Xamarin`,`SQL`, and the `Google Maps API` to help me track my training
-for my first triathlon.  
+Tri-Track is an application built using `C#`, `Xamarin`, `SQL`, and the `Google Maps API` to help me track my training
+for my first triathlon. Using a geolocator plugin and the Google Maps API this app will record your workouts and draw a polyline overlay ontop of the map so you can review your workout routes. It stores your previous work outs in an SQL database to be fetched later so you can view past workout data.  
 
 ### Prerequisites
 Any Android device running Android version 4.0.0 or higher should be able to run this application
