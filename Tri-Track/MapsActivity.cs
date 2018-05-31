@@ -28,15 +28,17 @@ namespace TriTrack
         IGeolocator locator = CrossGeolocator.Current;
         double lat;
         double _long;
+        Position last_position;
         Timer timer;
         //TextView latlonglist;
+        TextView distanceText;
         public PolylineOptions polyline = new PolylineOptions().InvokeWidth(20).InvokeColor(Color.Red.ToArgb());
         Intent startServiceIntent;
         int sec;
         int min;
         int hour;
+        double distance = 0;
         TextView TimerText;
-
         MarkerOptions start = new MarkerOptions();
         MarkerOptions finish = new MarkerOptions();
         bool WorkoutInProgress = false;
@@ -50,6 +52,7 @@ namespace TriTrack
             MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.the_fucking_map);
             mapFragment.GetMapAsync(this);
             Button switchB = FindViewById<Button>(Resource.Id.switch_button);
+            distanceText = FindViewById<TextView>(Resource.Id.distance);
             //latlonglist = FindViewById<TextView>(Resource.Id.LATLONG);
             getPos();
             switchB.Click += delegate
@@ -101,6 +104,7 @@ namespace TriTrack
 
         void Locator_PositionChanged(object sender, PositionEventArgs e)
         {
+            last_position = position;
             position = e.Position;
             DrawMarker();
             //FindViewById<Button>(Resource.Id.switch_button).Text = position.Latitude.ToString();
@@ -108,10 +112,19 @@ namespace TriTrack
         public void DrawMarker(){
             lat = position.Latitude;
             _long = position.Longitude;
+            distance += Calculate_Distance();
+            distanceText.Text = distance.ToString();
             polyline.Add(new LatLng(lat, _long));
             //polyline.Add(new LatLng(40.739487, -96.65715119999999)); //THIS IS FOR DEBUGGING
             daMap.AddPolyline(polyline);
         }
+
+        private double Calculate_Distance()
+        {
+            return last_position.CalculateDistance(position);
+
+        }
+
         public void OnMapReady(GoogleMap googleMap)
         { 
             daMap = googleMap;

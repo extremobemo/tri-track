@@ -32,7 +32,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3"
+        android:id="@+id/distance"
         android:layout_gravity="center_horizontal" />
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
