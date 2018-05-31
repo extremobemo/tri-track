@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using Android.App;
 using Android.Content;
 using Android.Gms.Maps;
@@ -27,9 +28,14 @@ namespace TriTrack
         IGeolocator locator = CrossGeolocator.Current;
         double lat;
         double _long;
-        TextView latlonglist;
+        Timer timer;
+        //TextView latlonglist;
         public PolylineOptions polyline = new PolylineOptions().InvokeWidth(20).InvokeColor(Color.Red.ToArgb());
         Intent startServiceIntent;
+        int sec;
+        int min;
+        int hour;
+        TextView TimerText;
 
         MarkerOptions start = new MarkerOptions();
         MarkerOptions finish = new MarkerOptions();
@@ -44,13 +50,16 @@ namespace TriTrack
             MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.the_fucking_map);
             mapFragment.GetMapAsync(this);
             Button switchB = FindViewById<Button>(Resource.Id.switch_button);
-            latlonglist = FindViewById<TextView>(Resource.Id.LATLONG);
+            //latlonglist = FindViewById<TextView>(Resource.Id.LATLONG);
             getPos();
-
             switchB.Click += delegate
             {
                 if(WorkoutInProgress == false){
-                    //StartService(startServiceIntent);
+                    timer = new Timer();
+                    timer.Interval = 1000;
+                    timer.Elapsed += Timer_Elapsed;
+                    timer.Start();
+                    TimerText = FindViewById<TextView>(Resource.Id.timer_text);
                     WorkoutInProgress = true;
                     start.SetPosition(new LatLng(position.Latitude, position.Longitude));
                     start.SetTitle("Start");
@@ -60,10 +69,11 @@ namespace TriTrack
                     LatLng latlng = new LatLng(position.Latitude, position.Longitude);  
                     CameraUpdate camera = CameraUpdateFactory.NewLatLngZoom(latlng, 15);  
                     daMap.MoveCamera(camera);
-                    switchB.Text = "WORKOUT IN PROGRESS";
+                    switchB.Text = "FINISH WORKOUT";
                 }
                 else{
                     WorkoutInProgress = false;
+                    timer.Stop();
                     finish.SetPosition(new LatLng(position.Latitude, position.Longitude));
                     finish.SetTitle("Finish");
                     daMap.AddMarker(finish);
@@ -74,18 +84,19 @@ namespace TriTrack
                     alert.SetMessage("Your workout is complete, would you like to record it?");
                     alert.SetButton("Yes", (c, ev) => {
                         alert.Dismiss(); //TODO: save polyine data to new table in the database.
+                        switchB.Text = "SUBMIT WORKOUT"; //TODO: SEND WORKOUT INFO TO THE DATABASE!
                     });
                     alert.SetButton2("No", (c, ev) =>{
-                        alert.Dismiss(); 
+                        daMap.Clear();
+                        alert.Dismiss();
+                        sec = 0;
+                        min = 0;
+                        hour = 0;
+                        TimerText.Text = ("0:00:00");
                     });
                     alert.Show();
-
                 }
-                 
-
-
             };
-
         }
 
         void Locator_PositionChanged(object sender, PositionEventArgs e)
@@ -94,8 +105,6 @@ namespace TriTrack
             DrawMarker();
             //FindViewById<Button>(Resource.Id.switch_button).Text = position.Latitude.ToString();
         }
-
-
         public void DrawMarker(){
             lat = position.Latitude;
             _long = position.Longitude;
@@ -103,8 +112,6 @@ namespace TriTrack
             //polyline.Add(new LatLng(40.739487, -96.65715119999999)); //THIS IS FOR DEBUGGING
             daMap.AddPolyline(polyline);
         }
-
-
         public void OnMapReady(GoogleMap googleMap)
         { 
             daMap = googleMap;
@@ -127,7 +134,6 @@ namespace TriTrack
         public async void StopListening(){
             await locator.StopListeningAsync();
         }
-
         protected override void OnPause()
         {
             base.OnPause();
@@ -137,16 +143,31 @@ namespace TriTrack
             }
 
         }
-
         protected override void OnResume()
         {
             base.OnResume();
             if(WorkoutInProgress){
                 StopService(startServiceIntent);
             }
-
         }
 
+        void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            sec++;
+            if(sec > 59){
+                min++;
+                sec=0;
+            }
+            if(min > 59){
+                hour++;
+                min = 0;
+            }
+
+            RunOnUiThread(() =>
+            {
+                TimerText.Text = string.Format("{0}:{1:00}:{2:00}",hour, min, sec);
+            });
+        }
 
     }
 }

@@ -50,7 +50,6 @@ namespace TriTrack
             }
         }
 
-
         public Task<bool> CheckUsernameLogin()
         {
             return Task.Run(() =>

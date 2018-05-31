@@ -8,18 +8,40 @@
     <fragment
         android:id="@+id/the_fucking_map"
         android:layout_width="match_parent"
-        android:layout_height="373.5dp"
+        android:layout_height="346.0dp"
         class="com.google.android.gms.maps.MapFragment" />
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timer_text"
+        android:text="0:00:00"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="12.0dp"
+        android:id="@+id/textView4" />
+    <TextView
+        android:text="DISTANCE : 0.00"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="12.0dp"
+        android:id="@+id/textView5" />
     <Button
-        android:text="SWITCH"
+        android:text="START WORKOUT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/switch_button" />
-    <TextView
-        android:text="LAT/LONG"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/LATLONG"
-        android:scrollbars="vertical"
-        android:maxLines="50" />
 </LinearLayout>

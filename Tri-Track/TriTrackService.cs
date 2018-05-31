@@ -17,14 +17,12 @@ namespace TriTrack
     [Service]
     public class TriTrackService : Service
     {
-        //Action runnable;
         Handler handler;
         double lat;
         double _long;
         Position position;
         IGeolocator locator = CrossGeolocator.Current;
         public PolylineOptions polyline = new PolylineOptions().InvokeWidth(20).InvokeColor(Color.Red.ToArgb());
-        //Notification notification;
 
         public override void OnCreate()
         {
@@ -44,17 +42,12 @@ namespace TriTrack
         {
                    
             RegisterForegroundService();   
-            // This tells Android not to restart the service if it is killed to reclaim resources.
             return StartCommandResult.Sticky;
         }
 
     void RegisterForegroundService()
         {
-            //check if file exists, delete it if it does. then recreate it to be freshly written to. 
-            //var pathToNewFolder = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + "/TriTrack";
-            //Directory.CreateDirectory(pathToNewFolder);
             var notification = new Notification.Builder(this).SetColor(Color.Green.ToArgb()).Build();
-            // Enlist this instance of the service as a foreground service
             StartForeground(10000, notification);
         }
 
@@ -62,11 +55,6 @@ namespace TriTrack
         void Locator_PositionChanged(object sender, PositionEventArgs e)
         {
             position = e.Position;
-            //var pathToNewFile = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + "/TriTrack";
-            //using (var writer = new StreamWriter(Path.Combine(pathToNewFile, "cached.txt"), true))
-            //{
-                //writer.WriteLine(position.Latitude.ToString() + ',' + position.Longitude.ToString());
-            //}
         }
 
 
