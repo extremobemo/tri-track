@@ -126,6 +126,7 @@
     <Compile Include="UserCreationActivity.cs" />
     <Compile Include="MapsActivity.cs" />
     <Compile Include="Utils\Settings.cs" />
+    <Compile Include="TriTrackService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
