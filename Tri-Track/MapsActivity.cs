@@ -42,16 +42,19 @@ namespace TriTrack
         MarkerOptions start = new MarkerOptions();
         MarkerOptions finish = new MarkerOptions();
         bool WorkoutInProgress = false;
+        int user_id;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             CrossCurrentActivity.Current.Activity = this;
             base.OnCreate(savedInstanceState);
             startServiceIntent = new Intent(this, typeof(TriTrackService));
+            user_id = Intent.GetIntExtra("user_id", 0);
             SetContentView(Resource.Layout.Map);
             MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.the_fucking_map);
             mapFragment.GetMapAsync(this);
             Button switchB = FindViewById<Button>(Resource.Id.switch_button);
+            switchB.Text = user_id.ToString();
             distanceText = FindViewById<TextView>(Resource.Id.distance);
             //latlonglist = FindViewById<TextView>(Resource.Id.LATLONG);
             getPos();

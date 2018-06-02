@@ -14,6 +14,7 @@ namespace TriTrack
     {
         string username;
         string password;
+        int user_id;
         Button sign_in_button;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -84,7 +85,14 @@ namespace TriTrack
                     user_password = password_reader.GetString(0);
                     if (user_password == password)
                     {
+                        password_reader.Close();
+                        command.CommandText = ("SELECT user_id FROM users where username=@username;");
+                        command.Parameters.AddWithValue("@username", username);
+                        MySqlDataReader user_id_reader = command.ExecuteReader();
+                        user_id_reader.Read();
+                        user_id = user_id_reader.GetInt32(0);
                         Intent intent = new Intent(this, typeof(MapsActivity));
+                        intent.PutExtra("user_id", user_id);
                         this.StartActivity(intent);
                         return true;
                     }
