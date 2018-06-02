@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/first_name_field"
         android:layout_gravity="center_horizontal"
-        android:hint="First name" />
+        android:hint="First name"
+        android:singleLine="true" />
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
@@ -26,7 +27,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/last_name_field"
         android:layout_gravity="center_horizontal"
-        android:hint="Last name" />
+        android:hint="Last name"
+        android:singleLine="true" />
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
@@ -37,7 +39,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/username_create"
         android:layout_gravity="center_horizontal"
-        android:hint="Username" />
+        android:hint="Username"
+        android:singleLine="true" />
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
@@ -49,7 +52,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/password_create"
         android:layout_gravity="center_horizontal"
-        android:hint="Password" />
+        android:hint="Password"
+        android:singleLine="true" />
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"

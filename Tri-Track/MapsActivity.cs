@@ -43,6 +43,7 @@ namespace TriTrack
         MarkerOptions finish = new MarkerOptions();
         bool WorkoutInProgress = false;
         int user_id;
+        Button switchB;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -53,31 +54,39 @@ namespace TriTrack
             SetContentView(Resource.Layout.Map);
             MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.the_fucking_map);
             mapFragment.GetMapAsync(this);
-            Button switchB = FindViewById<Button>(Resource.Id.switch_button);
-            switchB.Text = user_id.ToString();
+            switchB = FindViewById<Button>(Resource.Id.switch_button);
+            switchB.Enabled = false;
             distanceText = FindViewById<TextView>(Resource.Id.distance);
             //latlonglist = FindViewById<TextView>(Resource.Id.LATLONG);
             getPos();
             switchB.Click += delegate
             {
                 if(WorkoutInProgress == false){
+                    daMap.Clear();
+                    sec = 0;
+                    min = 0;
+                    hour = 0;
+                    distance = 0;
                     timer = new Timer();
                     timer.Interval = 1000;
                     timer.Elapsed += Timer_Elapsed;
                     timer.Start();
                     TimerText = FindViewById<TextView>(Resource.Id.timer_text);
+                    TimerText.Text = ("0:00:00");
                     WorkoutInProgress = true;
                     start.SetPosition(new LatLng(position.Latitude, position.Longitude));
                     start.SetTitle("Start");
                     daMap.AddMarker(start);
                     polyline.Add(new LatLng(position.Latitude, position.Longitude));
                     StartListening();
-                    LatLng latlng = new LatLng(position.Latitude, position.Longitude);  
-                    CameraUpdate camera = CameraUpdateFactory.NewLatLngZoom(latlng, 15);  
-                    daMap.MoveCamera(camera);
+                    //LatLng latlng = new LatLng(position.Latitude, position.Longitude);  
+                    //CameraUpdate camera = CameraUpdateFactory.NewLatLngZoom(latlng, 15);  
+                    //daMap.MoveCamera(camera);
                     switchB.Text = "FINISH WORKOUT";
                 }
-                else{
+                else if(WorkoutInProgress == true){
+                    switchB.Enabled = false;
+                    switchB.Text = "BEGIN NEW WORKOUT";
                     WorkoutInProgress = false;
                     timer.Stop();
                     finish.SetPosition(new LatLng(position.Latitude, position.Longitude));
@@ -86,18 +95,23 @@ namespace TriTrack
                     StopListening();
                     Android.App.AlertDialog.Builder diaglog = new AlertDialog.Builder(this);
                     AlertDialog alert = diaglog.Create();
+                    alert.SetCanceledOnTouchOutside(false);
+                    alert.SetCancelable(false);
                     alert.SetTitle("Good Work");
                     alert.SetMessage("Your workout is complete, would you like to record it?");
                     alert.SetButton("Yes", (c, ev) => {
                         alert.Dismiss(); //TODO: save polyine data to new table in the database.
-                        switchB.Text = "SUBMIT WORKOUT"; //TODO: SEND WORKOUT INFO TO THE DATABASE!
+                        switchB.Enabled = true;
+                        //switchB.Text = "SUBMIT WORKOUT"; //TODO: SEND WORKOUT INFO TO THE DATABASE!
                     });
                     alert.SetButton2("No", (c, ev) =>{
+                        switchB.Enabled = true;
                         daMap.Clear();
                         alert.Dismiss();
                         sec = 0;
                         min = 0;
                         hour = 0;
+                        distance = 0;
                         TimerText.Text = ("0:00:00");
                     });
                     alert.Show();
@@ -136,6 +150,12 @@ namespace TriTrack
         }
         public async void getPos(){
             position = await locator.GetPositionAsync();
+            LatLng latlng = new LatLng(position.Latitude, position.Longitude);  
+            CameraUpdate camera = CameraUpdateFactory.NewLatLngZoom(latlng, 15);  
+            daMap.MoveCamera(camera);
+            switchB.Text = "START NEW WORKOUT";
+            switchB.Enabled = true;
+
 
         }
         public async void StartListening(){
