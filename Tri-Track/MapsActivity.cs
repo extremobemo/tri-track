@@ -22,7 +22,7 @@ using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace TriTrack
 {
-    [Activity(Label = "MapsActivity", Theme = "@style/Theme")]
+    [Activity(Label = "Tri-Track", Theme = "@style/Theme")]
     public class MapsActivity : AppCompatActivity, IOnMapReadyCallback
     {
         private SupportToolbar daToolbar;
@@ -68,7 +68,9 @@ namespace TriTrack
             switchB.Click += delegate
             {
                 if(WorkoutInProgress == false){
+                    switchB.SetBackgroundColor(Android.Graphics.Color.Red);
                     daMap.Clear();
+                    polyline = new PolylineOptions();
                     sec = 0;
                     min = 0;
                     hour = 0;
@@ -91,6 +93,7 @@ namespace TriTrack
                     switchB.Text = "FINISH WORKOUT";
                 }
                 else if(WorkoutInProgress == true){
+                    switchB.SetBackgroundColor(Android.Graphics.Color.ParseColor("#219653"));
                     switchB.Enabled = false;
                     switchB.Text = "BEGIN NEW WORKOUT";
                     WorkoutInProgress = false;
