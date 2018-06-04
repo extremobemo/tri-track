@@ -12,17 +12,20 @@ using Android.Gms.Maps.Model;
 using Android.Locations;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 using Plugin.CurrentActivity;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
+using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace TriTrack
 {
-    [Activity(Label = "MapsActivity")]
-    public class MapsActivity : Activity, IOnMapReadyCallback
+    [Activity(Label = "MapsActivity", Theme = "@style/Theme")]
+    public class MapsActivity : AppCompatActivity, IOnMapReadyCallback
     {
+        private SupportToolbar daToolbar;
         GoogleMap daMap;
         Position position;
         IGeolocator locator = CrossGeolocator.Current;
@@ -52,6 +55,9 @@ namespace TriTrack
             startServiceIntent = new Intent(this, typeof(TriTrackService));
             user_id = Intent.GetIntExtra("user_id", 0);
             SetContentView(Resource.Layout.Map);
+            daToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(daToolbar);
+
             MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.the_fucking_map);
             mapFragment.GetMapAsync(this);
             switchB = FindViewById<Button>(Resource.Id.switch_button);
@@ -93,8 +99,8 @@ namespace TriTrack
                     finish.SetTitle("Finish");
                     daMap.AddMarker(finish);
                     StopListening();
-                    Android.App.AlertDialog.Builder diaglog = new AlertDialog.Builder(this);
-                    AlertDialog alert = diaglog.Create();
+                    Android.App.AlertDialog.Builder diaglog = new Android.App.AlertDialog.Builder(this);
+                    Android.App.AlertDialog alert = diaglog.Create();
                     alert.SetCanceledOnTouchOutside(false);
                     alert.SetCancelable(false);
                     alert.SetTitle("Good Work");
