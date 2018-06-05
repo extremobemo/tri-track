@@ -12,6 +12,7 @@ using Android.Gms.Maps.Model;
 using Android.Locations;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
@@ -26,6 +27,9 @@ namespace TriTrack
     public class MapsActivity : AppCompatActivity, IOnMapReadyCallback
     {
         private SupportToolbar daToolbar;
+        private MyActionBarDrawerToggle daDrawerToggle;
+        private DrawerLayout daDrawerLayout;
+        private ListView daLeftDrawer;
         GoogleMap daMap;
         Position position;
         IGeolocator locator = CrossGeolocator.Current;
@@ -35,7 +39,7 @@ namespace TriTrack
         Timer timer;
         //TextView latlonglist;
         TextView distanceText;
-        public PolylineOptions polyline = new PolylineOptions().InvokeWidth(20).InvokeColor(Color.Red.ToArgb());
+        public PolylineOptions polyline; 
         Intent startServiceIntent;
         int sec;
         int min;
@@ -55,9 +59,21 @@ namespace TriTrack
             startServiceIntent = new Intent(this, typeof(TriTrackService));
             user_id = Intent.GetIntExtra("user_id", 0);
             SetContentView(Resource.Layout.Map);
+
             daToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             SetSupportActionBar(daToolbar);
-
+            daLeftDrawer = FindViewById<ListView>(Resource.Id.left_drawer);
+            daDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            daDrawerToggle = new MyActionBarDrawerToggle(
+                this,
+                daDrawerLayout,
+                Resource.String.openDrawer,
+                Resource.String.closeDrawer);
+            SetSupportActionBar(daToolbar);
+            daDrawerLayout.AddDrawerListener(daDrawerToggle);
+            SupportActionBar.SetHomeButtonEnabled(true);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            daDrawerToggle.SyncState();
             MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.the_fucking_map);
             mapFragment.GetMapAsync(this);
             switchB = FindViewById<Button>(Resource.Id.switch_button);
@@ -70,7 +86,7 @@ namespace TriTrack
                 if(WorkoutInProgress == false){
                     switchB.SetBackgroundColor(Android.Graphics.Color.Red);
                     daMap.Clear();
-                    polyline = new PolylineOptions();
+                    polyline = new PolylineOptions().InvokeWidth(20).InvokeColor(Color.Red.ToArgb());
                     sec = 0;
                     min = 0;
                     hour = 0;
@@ -139,7 +155,7 @@ namespace TriTrack
             lat = position.Latitude;
             _long = position.Longitude;
             distance += Calculate_Distance();
-            distanceText.Text = distance.ToString();
+            distanceText.Text = string.Format("DISTANCE: {0}", Math.Round(distance,2));
             polyline.Add(new LatLng(lat, _long));
             //polyline.Add(new LatLng(40.739487, -96.65715119999999)); //THIS IS FOR DEBUGGING
             daMap.AddPolyline(polyline);
@@ -160,7 +176,7 @@ namespace TriTrack
         public async void getPos(){
             position = await locator.GetPositionAsync();
             LatLng latlng = new LatLng(position.Latitude, position.Longitude);  
-            CameraUpdate camera = CameraUpdateFactory.NewLatLngZoom(latlng, 15);  
+            CameraUpdate camera = CameraUpdateFactory.NewLatLngZoom(latlng, 17);  
             daMap.MoveCamera(camera);
             switchB.Text = "START NEW WORKOUT";
             switchB.Enabled = true;
@@ -212,6 +228,12 @@ namespace TriTrack
             {
                 TimerText.Text = string.Format("{0}:{1:00}:{2:00}",hour, min, sec);
             });
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            daDrawerToggle.OnOptionsItemSelected(item);
+            return base.OnOptionsItemSelected(item);
         }
 
     }

@@ -38,20 +38,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/distance"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="19.0dp" />
             <LinearLayout
                 android:orientation="horizontal"
                 android:minWidth="25px"
                 android:minHeight="25px"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/linearLayout2">
+                android:id="@+id/linearLayout2"
+                android:layout_marginBottom="0.0dp">
                 <TextView
                     android:text="             Time"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView6" />
+                    android:id="@+id/textView6"
+                    android:layout_marginBottom="3.0dp" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
@@ -78,7 +81,7 @@
                 android:id="@+id/textView4" />
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/switch_button"
                 BackgroundColor="#3b5998"
                 android:textColor="#ffffffff"

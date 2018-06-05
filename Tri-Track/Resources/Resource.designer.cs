@@ -2609,6 +2609,9 @@ namespace TriTrack
 			// aapt resource value: 0x7f070033
 			public const int app_name = 2131165235;
 			
+			// aapt resource value: 0x7f070035
+			public const int closeDrawer = 2131165237;
+			
 			// aapt resource value: 0x7f070001
 			public const int common_google_play_services_enable_button = 2131165185;
 			
@@ -2662,6 +2665,9 @@ namespace TriTrack
 			
 			// aapt resource value: 0x7f070032
 			public const int hello = 2131165234;
+			
+			// aapt resource value: 0x7f070034
+			public const int openDrawer = 2131165236;
 			
 			// aapt resource value: 0x7f070024
 			public const int search_menu_title = 2131165220;
