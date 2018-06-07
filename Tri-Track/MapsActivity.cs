@@ -51,6 +51,8 @@ namespace TriTrack
         bool WorkoutInProgress = false;
         int user_id;
         Button switchB;
+        private List<string> drawerOptions;
+        private ArrayAdapter drawerOptionsAdapter;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -59,11 +61,21 @@ namespace TriTrack
             startServiceIntent = new Intent(this, typeof(TriTrackService));
             user_id = Intent.GetIntExtra("user_id", 0);
             SetContentView(Resource.Layout.Map);
-
             daToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             SetSupportActionBar(daToolbar);
             daLeftDrawer = FindViewById<ListView>(Resource.Id.left_drawer);
+
+
             daDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+
+            drawerOptions = new List<string>();
+            drawerOptions.Add("Home");
+            drawerOptions.Add("History");
+            drawerOptions.Add("Log Out");
+            drawerOptionsAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, drawerOptions);
+            daLeftDrawer.Adapter = drawerOptionsAdapter;
+            daLeftDrawer.ItemClick += DaLeftDrawer_ItemClick;
+
             daDrawerToggle = new MyActionBarDrawerToggle(
                 this,
                 daDrawerLayout,
@@ -234,6 +246,19 @@ namespace TriTrack
         {
             daDrawerToggle.OnOptionsItemSelected(item);
             return base.OnOptionsItemSelected(item);
+        }
+
+        public override void OnBackPressed()
+        {
+            return;     //Disables Androids back button
+        }
+
+        void DaLeftDrawer_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            if(drawerOptions[e.Position].ToString() == "Log Out"){
+                Intent intent = new Intent(this, typeof(MainActivity));
+                this.StartActivity(intent);
+            }
         }
 
     }
