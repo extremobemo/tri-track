@@ -19,6 +19,7 @@ using Android.Widget;
 using Plugin.CurrentActivity;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
+using MySql.Data.MySqlClient;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace TriTrack
@@ -121,9 +122,11 @@ namespace TriTrack
                     switchB.Text = "FINISH WORKOUT";
                 }
                 else if(WorkoutInProgress == true){
+                    // THIS GETS A STRING OF THE POLYLINE
+                    //MAYBE STORE THIS A BLOB IN THE SQL DATABASE String.Join(":", polyline.Points);
                     switchB.SetBackgroundColor(Android.Graphics.Color.ParseColor("#219653"));
                     switchB.Enabled = false;
-                    switchB.Text = "BEGIN NEW WORKOUT";
+                    //switchB.Text = "BEGIN NEW WORKOUT";
                     WorkoutInProgress = false;
                     timer.Stop();
                     finish.SetPosition(new LatLng(position.Latitude, position.Longitude));
@@ -137,9 +140,17 @@ namespace TriTrack
                     alert.SetTitle("Good Work");
                     alert.SetMessage("Your workout is complete, would you like to record it?");
                     alert.SetButton("Yes", (c, ev) => {
-                        alert.Dismiss(); //TODO: save polyine data to new table in the database.
                         switchB.Enabled = true;
+                        MySqlConnection connection = new MySqlConnection("server=extremobemotestserver.mysql.database.azure.com;port=3306;database=test;user id=extremobemo@extremobemotestserver;password=Morris98;SslMode=None");
+                        connection.Open();
+                        var command = connection.CreateCommand();
+                        command.CommandText = ("INSERT INTO workouts (polyline, user_id) VALUES (@polyline, @user_id);");
+                        command.Parameters.AddWithValue("@polyline", String.Join(";", polyline.Points));
+                        command.Parameters.AddWithValue("@user_id", user_id);
+                        command.ExecuteNonQuery();
+                        connection.Close();
                         //switchB.Text = "SUBMIT WORKOUT"; //TODO: SEND WORKOUT INFO TO THE DATABASE!
+                        alert.Dismiss(); //TODO: save polyine data to new table in the database.
                     });
                     alert.SetButton2("No", (c, ev) =>{
                         switchB.Enabled = true;
@@ -250,7 +261,7 @@ namespace TriTrack
 
         public override void OnBackPressed()
         {
-            return;     //Disables Androids back button
+            return;
         }
 
         void DaLeftDrawer_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
