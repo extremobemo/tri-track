@@ -144,12 +144,14 @@ namespace TriTrack
                         MySqlConnection connection = new MySqlConnection("server=extremobemotestserver.mysql.database.azure.com;port=3306;database=test;user id=extremobemo@extremobemotestserver;password=Morris98;SslMode=None");
                         connection.Open();
                         var command = connection.CreateCommand();
-                        command.CommandText = ("INSERT INTO workouts (polyline, user_id) VALUES (@polyline, @user_id);");
+                        command.CommandText = ("INSERT INTO workouts (polyline, user_id, distance, time) VALUES (@polyline, @user_id, @distance, @time);");
                         command.Parameters.AddWithValue("@polyline", String.Join(";", polyline.Points));
                         command.Parameters.AddWithValue("@user_id", user_id);
+                        command.Parameters.AddWithValue("@distance", string.Format("DISTANCE: {0}", Math.Round(distance, 2)));
+                        command.Parameters.AddWithValue("@time", string.Format("{0}:{1:00}:{2:00}", hour, min, sec));
                         command.ExecuteNonQuery();
                         connection.Close();
-                        //switchB.Text = "SUBMIT WORKOUT"; //TODO: SEND WORKOUT INFO TO THE DATABASE!
+                        switchB.Text = "START NEW WORKOUT"; //TODO: SEND WORKOUT INFO TO THE DATABASE!
                         alert.Dismiss(); //TODO: save polyine data to new table in the database.
                     });
                     alert.SetButton2("No", (c, ev) =>{
@@ -161,6 +163,7 @@ namespace TriTrack
                         hour = 0;
                         distance = 0;
                         TimerText.Text = ("0:00:00");
+                        switchB.Text = "START NEW WORKOUT";
                     });
                     alert.Show();
                 }
@@ -268,6 +271,12 @@ namespace TriTrack
         {
             if(drawerOptions[e.Position].ToString() == "Log Out"){
                 Intent intent = new Intent(this, typeof(MainActivity));
+                this.StartActivity(intent);
+            }
+
+            if(drawerOptions[e.Position].ToString() == "History"){
+                Intent intent = new Intent(this, typeof(HistoryActivity));
+                intent.PutExtra("user_id", user_id);
                 this.StartActivity(intent);
             }
         }

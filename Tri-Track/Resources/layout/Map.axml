@@ -73,6 +73,31 @@
                     android:text="0:00:00"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
+                <CheckedTextView
+                    android:layout_width="78.5dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/checkedTextView1" />
+                <CheckedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/checkedTextView4"
+                    android:text="        " />
+                <CheckedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/checkedTextView2"
+                    android:text="BIKE" />
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/switch1"
+                    android:layout_marginRight="0.0dp" />
+                <CheckedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/checkedTextView3"
+                    android:text="RUN"
+                    android:layout_marginRight="23.0dp" />
             </LinearLayout>
             <TextView
                 android:textAppearance="?android:attr/textAppearanceLarge"
