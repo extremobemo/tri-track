@@ -31,6 +31,7 @@ namespace TriTrack
         private MyActionBarDrawerToggle daDrawerToggle;
         private DrawerLayout daDrawerLayout;
         private ListView daLeftDrawer;
+        private string workoutMode;
         GoogleMap daMap;
         Position position;
         IGeolocator locator = CrossGeolocator.Current;
@@ -52,6 +53,7 @@ namespace TriTrack
         bool WorkoutInProgress = false;
         int user_id;
         Button switchB;
+        Switch WorkOutMode;
         private List<string> drawerOptions;
         private ArrayAdapter drawerOptionsAdapter;
 
@@ -92,11 +94,19 @@ namespace TriTrack
             switchB = FindViewById<Button>(Resource.Id.switch_button);
             switchB.Enabled = false;
             distanceText = FindViewById<TextView>(Resource.Id.distance);
+            WorkOutMode = FindViewById<Switch>(Resource.Id.type);
             //latlonglist = FindViewById<TextView>(Resource.Id.LATLONG);
             getPos();
             switchB.Click += delegate
             {
                 if(WorkoutInProgress == false){
+                    if(WorkOutMode.Checked == false){
+                        workoutMode = "BIKE";
+                    }
+                    else{
+                        workoutMode = "RUN";
+                    }
+                    getPos();
                     switchB.SetBackgroundColor(Android.Graphics.Color.Red);
                     daMap.Clear();
                     polyline = new PolylineOptions().InvokeWidth(20).InvokeColor(Color.Red.ToArgb());
@@ -126,7 +136,7 @@ namespace TriTrack
                     //MAYBE STORE THIS A BLOB IN THE SQL DATABASE String.Join(":", polyline.Points);
                     switchB.SetBackgroundColor(Android.Graphics.Color.ParseColor("#219653"));
                     switchB.Enabled = false;
-                    //switchB.Text = "BEGIN NEW WORKOUT";
+                    switchB.Text = "START NEW WORKOUT";
                     WorkoutInProgress = false;
                     timer.Stop();
                     finish.SetPosition(new LatLng(position.Latitude, position.Longitude));
@@ -141,16 +151,7 @@ namespace TriTrack
                     alert.SetMessage("Your workout is complete, would you like to record it?");
                     alert.SetButton("Yes", (c, ev) => {
                         switchB.Enabled = true;
-                        MySqlConnection connection = new MySqlConnection("server=extremobemotestserver.mysql.database.azure.com;port=3306;database=test;user id=extremobemo@extremobemotestserver;password=Morris98;SslMode=None");
-                        connection.Open();
-                        var command = connection.CreateCommand();
-                        command.CommandText = ("INSERT INTO workouts (polyline, user_id, distance, time) VALUES (@polyline, @user_id, @distance, @time);");
-                        command.Parameters.AddWithValue("@polyline", String.Join(";", polyline.Points));
-                        command.Parameters.AddWithValue("@user_id", user_id);
-                        command.Parameters.AddWithValue("@distance", string.Format("DISTANCE: {0}", Math.Round(distance, 2)));
-                        command.Parameters.AddWithValue("@time", string.Format("{0}:{1:00}:{2:00}", hour, min, sec));
-                        command.ExecuteNonQuery();
-                        connection.Close();
+                        SubmitWorkoutToDatabase();
                         switchB.Text = "START NEW WORKOUT"; //TODO: SEND WORKOUT INFO TO THE DATABASE!
                         alert.Dismiss(); //TODO: save polyine data to new table in the database.
                     });
@@ -204,8 +205,11 @@ namespace TriTrack
             LatLng latlng = new LatLng(position.Latitude, position.Longitude);  
             CameraUpdate camera = CameraUpdateFactory.NewLatLngZoom(latlng, 17);  
             daMap.MoveCamera(camera);
-            switchB.Text = "START NEW WORKOUT";
-            switchB.Enabled = true;
+            if(switchB.Text != "FINISH WORKOUT"){
+                switchB.Text = "START NEW WORKOUT";
+                switchB.Enabled = true;
+            }
+
 
 
         }
@@ -270,15 +274,54 @@ namespace TriTrack
         void DaLeftDrawer_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             if(drawerOptions[e.Position].ToString() == "Log Out"){
+                //WorkoutInProgress = false;
                 Intent intent = new Intent(this, typeof(MainActivity));
                 this.StartActivity(intent);
             }
 
             if(drawerOptions[e.Position].ToString() == "History"){
+                daDrawerLayout.CloseDrawers();
+                OpenHistory();
+            }
+        }
+        public Task<bool> SubmitWorkout()
+        {
+            return Task.Run(() =>
+            {
+                MySqlConnection connection = new MySqlConnection("server=extremobemotestserver.mysql.database.azure.com;port=3306;database=test;user id=extremobemo@extremobemotestserver;password=Morris98;SslMode=None");
+                connection.Open();
+                var command = connection.CreateCommand();
+                command.CommandText = ("INSERT INTO workouts (polyline, user_id, distance, time, type) VALUES (@polyline, @user_id, @distance, @time, @type);");
+                command.Parameters.AddWithValue("@polyline", String.Join(";", polyline.Points));
+                command.Parameters.AddWithValue("@user_id", user_id);
+                command.Parameters.AddWithValue("@distance", string.Format("DISTANCE: {0}", Math.Round(distance, 2)));
+                command.Parameters.AddWithValue("@time", string.Format("{0}:{1:00}:{2:00}", hour, min, sec));
+                command.Parameters.AddWithValue("type", workoutMode);
+                command.ExecuteNonQuery();
+                connection.Close();
+                return true;
+            });
+                                }
+       
+
+        public async void SubmitWorkoutToDatabase()
+        {
+            bool x = await SubmitWorkout();
+        }
+
+        public Task<bool> OpenHistoryTask()
+        {
+            return Task.Run(() =>
+            {
                 Intent intent = new Intent(this, typeof(HistoryActivity));
                 intent.PutExtra("user_id", user_id);
                 this.StartActivity(intent);
-            }
+                return true;
+            });
+        }
+         
+        public async void OpenHistory(){
+            bool x = await OpenHistoryTask();
         }
 
     }

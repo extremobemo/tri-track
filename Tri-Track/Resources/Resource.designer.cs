@@ -1942,17 +1942,17 @@ namespace TriTrack
 			// aapt resource value: 0x7f0c0049
 			public const int checkbox = 2131492937;
 			
-			// aapt resource value: 0x7f0c0076
-			public const int checkedTextView1 = 2131492982;
+			// aapt resource value: 0x7f0c0077
+			public const int checkedTextView1 = 2131492983;
+			
+			// aapt resource value: 0x7f0c0079
+			public const int checkedTextView2 = 2131492985;
+			
+			// aapt resource value: 0x7f0c007b
+			public const int checkedTextView3 = 2131492987;
 			
 			// aapt resource value: 0x7f0c0078
-			public const int checkedTextView2 = 2131492984;
-			
-			// aapt resource value: 0x7f0c007a
-			public const int checkedTextView3 = 2131492986;
-			
-			// aapt resource value: 0x7f0c0077
-			public const int checkedTextView4 = 2131492983;
+			public const int checkedTextView4 = 2131492984;
 			
 			// aapt resource value: 0x7f0c0089
 			public const int chronometer = 2131493001;
@@ -1966,8 +1966,8 @@ namespace TriTrack
 			// aapt resource value: 0x7f0c003c
 			public const int contentPanel = 2131492924;
 			
-			// aapt resource value: 0x7f0c006c
-			public const int create_account_button = 2131492972;
+			// aapt resource value: 0x7f0c006f
+			public const int create_account_button = 2131492975;
 			
 			// aapt resource value: 0x7f0c0094
 			public const int creation_error = 2131493012;
@@ -1993,11 +1993,11 @@ namespace TriTrack
 			// aapt resource value: 0x7f0c0018
 			public const int disableHome = 2131492888;
 			
-			// aapt resource value: 0x7f0c0071
-			public const int distance = 2131492977;
+			// aapt resource value: 0x7f0c0072
+			public const int distance = 2131492978;
 			
-			// aapt resource value: 0x7f0c006e
-			public const int drawer_layout = 2131492974;
+			// aapt resource value: 0x7f0c0062
+			public const int drawer_layout = 2131492962;
 			
 			// aapt resource value: 0x7f0c0054
 			public const int edit_query = 2131492948;
@@ -2017,8 +2017,8 @@ namespace TriTrack
 			// aapt resource value: 0x7f0c0095
 			public const int first_name_field = 2131493013;
 			
-			// aapt resource value: 0x7f0c0062
-			public const int historyListView = 2131492962;
+			// aapt resource value: 0x7f0c0064
+			public const int historyListView = 2131492964;
 			
 			// aapt resource value: 0x7f0c0004
 			public const int home = 2131492868;
@@ -2050,8 +2050,8 @@ namespace TriTrack
 			// aapt resource value: 0x7f0c0097
 			public const int last_name_field = 2131493015;
 			
-			// aapt resource value: 0x7f0c007c
-			public const int left_drawer = 2131492988;
+			// aapt resource value: 0x7f0c0065
+			public const int left_drawer = 2131492965;
 			
 			// aapt resource value: 0x7f0c0015
 			public const int light = 2131492885;
@@ -2062,11 +2062,11 @@ namespace TriTrack
 			// aapt resource value: 0x7f0c0091
 			public const int line3 = 2131493009;
 			
-			// aapt resource value: 0x7f0c0073
-			public const int linearLayout1 = 2131492979;
+			// aapt resource value: 0x7f0c0074
+			public const int linearLayout1 = 2131492980;
 			
-			// aapt resource value: 0x7f0c0072
-			public const int linearLayout2 = 2131492978;
+			// aapt resource value: 0x7f0c0073
+			public const int linearLayout2 = 2131492979;
 			
 			// aapt resource value: 0x7f0c0016
 			public const int listMode = 2131492886;
@@ -2074,8 +2074,8 @@ namespace TriTrack
 			// aapt resource value: 0x7f0c0036
 			public const int list_item = 2131492918;
 			
-			// aapt resource value: 0x7f0c0069
-			public const int login_loading = 2131492969;
+			// aapt resource value: 0x7f0c006c
+			public const int login_loading = 2131492972;
 			
 			// aapt resource value: 0x7f0c0083
 			public const int media_actions = 2131492995;
@@ -2110,8 +2110,8 @@ namespace TriTrack
 			// aapt resource value: 0x7f0c0099
 			public const int password_create = 2131493017;
 			
-			// aapt resource value: 0x7f0c0067
-			public const int password_field = 2131492967;
+			// aapt resource value: 0x7f0c006a
+			public const int password_field = 2131492970;
 			
 			// aapt resource value: 0x7f0c0005
 			public const int progress_circular = 2131492869;
@@ -2143,8 +2143,8 @@ namespace TriTrack
 			// aapt resource value: 0x7f0c003e
 			public const int scrollView = 2131492926;
 			
-			// aapt resource value: 0x7f0c0061
-			public const int scrollView1 = 2131492961;
+			// aapt resource value: 0x7f0c0063
+			public const int scrollView1 = 2131492963;
 			
 			// aapt resource value: 0x7f0c0056
 			public const int search_badge = 2131492950;
@@ -2191,8 +2191,8 @@ namespace TriTrack
 			// aapt resource value: 0x7f0c001c
 			public const int showTitle = 2131492892;
 			
-			// aapt resource value: 0x7f0c006a
-			public const int sign_in_button = 2131492970;
+			// aapt resource value: 0x7f0c006d
+			public const int sign_in_button = 2131492973;
 			
 			// aapt resource value: 0x7f0c003a
 			public const int spacer = 2131492922;
@@ -2221,11 +2221,8 @@ namespace TriTrack
 			// aapt resource value: 0x7f0c005d
 			public const int submit_area = 2131492957;
 			
-			// aapt resource value: 0x7f0c0079
-			public const int switch1 = 2131492985;
-			
-			// aapt resource value: 0x7f0c007b
-			public const int switch_button = 2131492987;
+			// aapt resource value: 0x7f0c007c
+			public const int switch_button = 2131492988;
 			
 			// aapt resource value: 0x7f0c0017
 			public const int tabMode = 2131492887;
@@ -2245,35 +2242,35 @@ namespace TriTrack
 			// aapt resource value: 0x7f0c003f
 			public const int textSpacerNoTitle = 2131492927;
 			
-			// aapt resource value: 0x7f0c0063
-			public const int textView1 = 2131492963;
+			// aapt resource value: 0x7f0c0066
+			public const int textView1 = 2131492966;
 			
-			// aapt resource value: 0x7f0c0070
-			public const int textView2 = 2131492976;
+			// aapt resource value: 0x7f0c0071
+			public const int textView2 = 2131492977;
 			
 			// aapt resource value: 0x7f0c0096
 			public const int textView3 = 2131493014;
 			
-			// aapt resource value: 0x7f0c0066
-			public const int textView4 = 2131492966;
+			// aapt resource value: 0x7f0c0069
+			public const int textView4 = 2131492969;
 			
-			// aapt resource value: 0x7f0c0074
-			public const int textView5 = 2131492980;
+			// aapt resource value: 0x7f0c0075
+			public const int textView5 = 2131492981;
+			
+			// aapt resource value: 0x7f0c006e
+			public const int textView6 = 2131492974;
 			
 			// aapt resource value: 0x7f0c006b
-			public const int textView6 = 2131492971;
+			public const int textView7 = 2131492971;
 			
-			// aapt resource value: 0x7f0c0068
-			public const int textView7 = 2131492968;
-			
-			// aapt resource value: 0x7f0c006f
-			public const int the_fucking_map = 2131492975;
+			// aapt resource value: 0x7f0c0070
+			public const int the_fucking_map = 2131492976;
 			
 			// aapt resource value: 0x7f0c0088
 			public const int time = 2131493000;
 			
-			// aapt resource value: 0x7f0c0075
-			public const int timer_text = 2131492981;
+			// aapt resource value: 0x7f0c0076
+			public const int timer_text = 2131492982;
 			
 			// aapt resource value: 0x7f0c0038
 			public const int title = 2131492920;
@@ -2284,8 +2281,8 @@ namespace TriTrack
 			// aapt resource value: 0x7f0c0045
 			public const int title_template = 2131492933;
 			
-			// aapt resource value: 0x7f0c006d
-			public const int toolbar = 2131492973;
+			// aapt resource value: 0x7f0c0061
+			public const int toolbar = 2131492961;
 			
 			// aapt resource value: 0x7f0c002e
 			public const int top = 2131492910;
@@ -2293,8 +2290,11 @@ namespace TriTrack
 			// aapt resource value: 0x7f0c0044
 			public const int topPanel = 2131492932;
 			
-			// aapt resource value: 0x7f0c0064
-			public const int tri_track_logo = 2131492964;
+			// aapt resource value: 0x7f0c0067
+			public const int tri_track_logo = 2131492967;
+			
+			// aapt resource value: 0x7f0c007a
+			public const int type = 2131492986;
 			
 			// aapt resource value: 0x7f0c0008
 			public const int up = 2131492872;
@@ -2305,8 +2305,8 @@ namespace TriTrack
 			// aapt resource value: 0x7f0c0098
 			public const int username_create = 2131493016;
 			
-			// aapt resource value: 0x7f0c0065
-			public const int username_field = 2131492965;
+			// aapt resource value: 0x7f0c0068
+			public const int username_field = 2131492968;
 			
 			// aapt resource value: 0x7f0c0012
 			public const int wide = 2131492882;
