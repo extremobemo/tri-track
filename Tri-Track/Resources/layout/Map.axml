@@ -81,7 +81,8 @@
                     android:layout_width="53.0dp"
                     android:layout_height="match_parent"
                     android:id="@+id/checkedTextView4"
-                    android:text="        " />
+                    android:text="        "
+                    android:layout_marginRight="23.5dp" />
                 <CheckedTextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
