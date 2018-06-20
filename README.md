@@ -31,7 +31,15 @@ After you have installed the application, you can begin by creating an account a
 ## Logged In
 
 After loggin in you will have many options :
-  - Record a run (Early Alpha)
-  - Record a bike ride (Early Alpha)
-  - Enter swim workout (Not yet implemented)
-  - View past workouts (Not yet implemented)
+  - Record a run/bike ride
+ 
+  <h1 align="center">
+  <br>
+  <img src="https://user-images.githubusercontent.com/24390579/41681607-b7bfed1a-749a-11e8-963f-c9674c7f16e7.png" width="400"></a>
+</h1>
+
+This is an example of a short 2+ mile run I went on around my neighborhood to demonstrate the location tracking.
+
+---
+
+  - View past workouts (Beta)
