@@ -38,7 +38,7 @@ After loggin in you will have many options :
   <img src="https://user-images.githubusercontent.com/24390579/41681607-b7bfed1a-749a-11e8-963f-c9674c7f16e7.png" width="400"></a>
 </h1>
 
-This is an example of a short 2+ mile run I went on around my neighborhood to demonstrate the location tracking.
+This is an example of a short 2+ mile run I went on around my neighborhood to demonstrate the location tracking. After the workout has been completed the app will store the Lat/Long data of the polyline in the SQL Database using the unique UUID of the logged in user so that the workout can be viewed later. 
 
 ---
 
